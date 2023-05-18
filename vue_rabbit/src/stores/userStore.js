@@ -12,7 +12,7 @@ export const useUserStore = defineStore('user', () => {
     const getUserInfo = async ({account, password}) => {
         loginApi({account, password}).then(({data: res}) => {
             userInfo.value = res.result
-            localStorage.setItem("user", JSON.stringify(res.result))
+            localStorage.setItem("user", encodeURIComponent(JSON.stringify(res.result)))
         })
         await mergeCartAPI(cartStore.cartList.map((item) => {
             return {
